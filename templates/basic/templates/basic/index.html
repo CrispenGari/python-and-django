@@ -1,0 +1,10 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'basic/styles.css' %}" />
+
+<h1>{{name}}</h1>
+<img src="{% static 'basic/avatar.jpg' %}" alt="avatar" id="avatar" />
+<br />
+<button type="button" id="button">Show Image</button>
+
+<script src="{%static 'basic/index.js'%}"></script>
