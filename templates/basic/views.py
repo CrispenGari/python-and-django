@@ -5,5 +5,18 @@ from django.template import loader
 
 def main(req):
     template = loader.get_template('basic/index.html')
-    context = {'name': "This is my name!!"}
+    context = {
+    }
+    return HttpResponse(template.render(context, req))
+
+def history(req, hist_id):
+    template = loader.get_template('basic/history.html')
+    context ={
+        'id': hist_id,
+    }
+    return HttpResponse(template.render(context, req))
+
+def about(req):
+    template = loader.get_template('basic/about.html')
+    context ={}
     return HttpResponse(template.render(context, req))

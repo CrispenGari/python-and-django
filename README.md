@@ -1,5 +1,7 @@
 # Python Django
 
+Getting started with the basics of Python Django.
+
 ## Getting Started
 
 ### Step 1: Create a virtual environment and activate it.
