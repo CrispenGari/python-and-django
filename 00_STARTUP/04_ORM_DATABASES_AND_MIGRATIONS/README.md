@@ -209,7 +209,14 @@ admin.site.register(Post)
 
 ### Next
 
-In the next section we are going to have a look at how we can create a user registration form.
+In the next section we are going to look at how we can load static files in our templates. Example of templates include:
+
+1. css
+2. images
+3. javascript
+4. etc
+
+We are also going to load `bootstrap` cdn's in our templates.
 
 ### Refs.
 
