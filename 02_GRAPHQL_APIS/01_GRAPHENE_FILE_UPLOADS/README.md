@@ -276,6 +276,28 @@ Using Postman
 
 > image taken from [here](https://stackoverflow.com/questions/61488358/uploading-files-via-graphql-setting-up-server-and-client-sides-and-querying-via)
 
+### Serving Static Files
+
+In this section I will show how we can server static files to the browser over a `url`. First we need to open the `file_uploads/file_uploads/urls.py` and add the `static` url to our `urlpatterns` as follows:
+
+```py
+from django.contrib import admin
+from django.urls import path, include
+from django.conf.urls.static import static
+
+import os
+
+# The folder where we want to serve the static file from
+PATH = os.path.join(os.getcwd(), "images")
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path(r'graphql/', include('api.urls'))
+]  + static('/images', document_root=PATH)
+```
+
+So the `static` function takes in the first argument as the path and the second argument as an absolute directory to where the files and folders that we are exposing. In our case we are exposing the `images` folder. Now with this we can be able to access the `cover.jpg` by visiting `http://127.0.0.1/images/cover.jpg`
+
 ### Refs
 
 1.[stackoverflow.com](https://stackoverflow.com/questions/61892306/is-there-any-way-to-upload-files-via-postman-into-a-graphql-api)
@@ -285,3 +307,7 @@ Using Postman
 3. [00_GRAPHENE_BASICS - github](https://github.com/CrispenGari/python-and-django/tree/main/02_GRAPHQL_APIS/00_GRAPHENE_BASICS)
 
 4. [github.com/CrispenGari](https://github.com/CrispenGari/WAC/blob/main/server/api/blueprints/__init__.py)
+
+5. [docs.djangoproject.com](https://docs.djangoproject.com/en/2.1/ref/urls/#static)
+
+6. [stackoverflow.com](https://stackoverflow.com/questions/40248356/how-to-serve-a-directory-of-static-files-at-a-custom-url-in-django)
