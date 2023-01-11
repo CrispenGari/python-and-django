@@ -245,6 +245,37 @@ If everything went well we are going to get the following response from the serv
 }
 ```
 
+### Uploading Multiple Files
+
+The following is the mutation for uploading multiple files:
+
+```py
+class UploadFileMutation(graphene.Mutation):
+    class Arguments:
+        files = graphene.NonNull(graphene.List(Upload))
+
+    success = graphene.Boolean()
+
+    def mutate(self, info, files, **kwargs):
+        print(files)
+        return UploadFileMutation(success=True)
+
+class Mutation(graphene.ObjectType):
+    uploadFile = UploadFileMutation.Field()
+```
+
+Using cURL
+
+```shell
+curl http://localhost:3001/graphql/  -F operations='{ "query": "mutation UploadFile($files: [Upload]!){ uploadFile(files: $files){ success } }", "variables": { "files":[ null, null ] } }' -F map='{ "0": ["variables.files.0"], "1": ["variables.files.1"] }' -F 0=@README.md -F 1=@LICENSE
+```
+
+Using Postman
+
+![img](https://i.stack.imgur.com/fhTKf.png)
+
+> image taken from [here](https://stackoverflow.com/questions/61488358/uploading-files-via-graphql-setting-up-server-and-client-sides-and-querying-via)
+
 ### Refs
 
 1.[stackoverflow.com](https://stackoverflow.com/questions/61892306/is-there-any-way-to-upload-files-via-postman-into-a-graphql-api)
